@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { SharedService } from 'src/app/services/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  constructor(private loginAuth: AuthService,private router:Router) { }
+  constructor(private loginAuth: AuthService,private router:Router, private sharedService: SharedService) { }
 
   ngOnInit(): void {
       
@@ -33,15 +34,22 @@ export class LoginComponent implements OnInit{
     this.loginAuth.loginUser([
       this.loginForm.value.email!,
       this.loginForm.value.pwd!
-    ]).subscribe(res => {
+    ]).subscribe((res: any) => {
       if(res == 'Failure') {
         this.isUserValid = false;
         alert('Login Unsuccessful');
       }
       else {
         this.isUserValid = true;
-        this.loginAuth.setToken(res);
-        this.router.navigateByUrl('home');
+        const parsedRes = JSON.parse(res);
+        // Assuming res contains both token and user
+        const token = parsedRes.token;
+        const user = parsedRes.user;
+        this.loginAuth.setToken(token);
+        this.sharedService.setUser(user); // Pass user to shared service
+        console.log('Logged in user:', user);
+        // this.router.navigateByUrl('home',{state:{user}});
+        this.router.navigate(['home'], { queryParams: { user: JSON.stringify(user) } });
       }
     });
   }

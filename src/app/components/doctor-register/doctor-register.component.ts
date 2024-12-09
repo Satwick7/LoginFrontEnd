@@ -3,23 +3,23 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-doctor-register',
+  templateUrl: './doctor-register.component.html',
+  styleUrls: ['./doctor-register.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class DoctorRegisterComponent implements OnInit{
   repeatPass:string = 'none';
 
   displayMsg: string = '';
   isAccountCreated: boolean = false;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
       
   }
 
-  registerForm = new FormGroup({
+  DoctorRegisterForm = new FormGroup({
     firstname: new FormControl("",
       [Validators.required,
       Validators.minLength(2),
@@ -32,39 +32,36 @@ export class RegisterComponent implements OnInit{
     ]),
     email: new FormControl("",[Validators.required,Validators.email]) ,
     mobile: new FormControl("",[Validators.required,Validators.pattern("[0-9]*"),Validators.minLength(10),Validators.maxLength(10)]),
-    issue: new FormControl("",[Validators.required]),
-    age: new FormControl("",[Validators.required,Validators.pattern("^[0-9]+$"),Validators.minLength(1),Validators.maxLength(3)]),
+    specialist: new FormControl("",[Validators.required]),
     gender: new FormControl("",[Validators.required]),
     pwd: new FormControl("",[Validators.required,Validators.minLength(6),Validators.maxLength(15)]),
     rpwd: new FormControl("")
   })
 
-
-  registerSubmited() {
+  DoctorRegisterSubmited() {
     if(this.PWD.value == this.RPWD.value) {
-      console.log(this.registerForm.valid);
+      console.log(this.DoctorRegisterForm.valid);
       this.repeatPass = 'none'
 
       const user = {
-        FirstName: this.registerForm.value.firstname!,
-        LastName: this.registerForm.value.lastname!,
-        Email: this.registerForm.value.email!,
-        Mobile: this.registerForm.value.mobile!,
-        Gender: this.registerForm.value.gender!,
-        Pwd: this.registerForm.value.pwd!
+        FirstName: this.DoctorRegisterForm.value.firstname!,
+        LastName: this.DoctorRegisterForm.value.lastname!,
+        Email: this.DoctorRegisterForm.value.email!,
+        Mobile: this.DoctorRegisterForm.value.mobile!,
+        Gender: this.DoctorRegisterForm.value.gender!,
+        Pwd: this.DoctorRegisterForm.value.pwd!
       };
 
-      const patient = {
-        Issue: this.registerForm.value.issue!,
-        Age: this.registerForm.value.age!
+      const doctor = {
+        Specialist: this.DoctorRegisterForm.value.specialist!
       };
 
-      this.authService.registerUser(user,patient).subscribe(res => {
+      this.authService.registerDoctorUser(user,doctor).subscribe(res => {
          if(res == 'Success') {
           this.displayMsg = 'Account Created Successfully!';
           this.isAccountCreated = true;
 
-          this.registerForm.reset();
+          this.DoctorRegisterForm.reset();
 
           this.repeatPass = 'none';
          }
@@ -84,38 +81,35 @@ export class RegisterComponent implements OnInit{
   }
 
   get FirstName():FormControl {
-    return this.registerForm.get("firstname") as FormControl;
+    return this.DoctorRegisterForm.get("firstname") as FormControl;
   }
 
   get LastName():FormControl {
-    return this.registerForm.get("lastname") as FormControl;
+    return this.DoctorRegisterForm.get("lastname") as FormControl;
   }
 
   get Email():FormControl {
-    return this.registerForm.get("email") as FormControl;
+    return this.DoctorRegisterForm.get("email") as FormControl;
   }
 
-  get Issue():FormControl {
-    return this.registerForm.get("issue") as FormControl;
-  }
-
-  get Age():FormControl {
-    return this.registerForm.get("age") as FormControl;
+  get Specialist():FormControl {
+    return this.DoctorRegisterForm.get("specialist") as FormControl;
   }
 
   get Mobile():FormControl {
-    return this.registerForm.get("mobile") as FormControl;
+    return this.DoctorRegisterForm.get("mobile") as FormControl;
   }
 
   get Gender():FormControl {
-    return this.registerForm.get("gender") as FormControl;
+    return this.DoctorRegisterForm.get("gender") as FormControl;
   }
 
   get PWD():FormControl {
-    return this.registerForm.get("pwd") as FormControl;
+    return this.DoctorRegisterForm.get("pwd") as FormControl;
   }
 
   get RPWD():FormControl {
-    return this.registerForm.get("rpwd") as FormControl;
+    return this.DoctorRegisterForm.get("rpwd") as FormControl;
   }
+
 }

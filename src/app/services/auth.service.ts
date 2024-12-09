@@ -15,19 +15,18 @@ export class AuthService {
 
   jwtHelperService = new JwtHelperService();
 
-  registerUser(user: Array<String>) {
-    return this.http.post(this.baseServerUrl+ "User/CreateUser",
-      {
-      FirstName: user[0],
-      LastName: user[1],
-      Email: user[2],
-      Mobile: user[3],
-      Gender: user[4],
-      Pwd: user[5]
-      },
+  registerUser(user: any,patient:any) {
+    return this.http.post(this.baseServerUrl+ "User/CreateUser",{user,patient},
     {
       responseType: 'text',
     });
+  }
+
+  registerDoctorUser(user:any,doctor:any) {
+    return this.http.post(this.baseServerUrl+ "User/CreateDoctorUser",{user,doctor},
+      {
+        responseType: 'text',
+      });
   }
 
   loginUser(loginInfo: Array<String>) {
@@ -46,6 +45,7 @@ export class AuthService {
   }
 
   loadCurrentUser() {
+
     const token = localStorage.getItem("access_token");
     const userInfo = token != null ? this.jwtHelperService.decodeToken(token) : null;
 

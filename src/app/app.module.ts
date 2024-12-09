@@ -10,6 +10,10 @@ import { AuthService } from './services/auth.service';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
+import { LaunchPageComponent } from './components/launch-page/launch-page.component';
+import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
+import { HeaderComponent } from './components/header/header.component';
+
 
 @NgModule({
   declarations: [
@@ -17,7 +21,10 @@ import { HomeComponent } from './components/home/home.component';
     RegisterComponent,
     LoginComponent,
     PageNotFoundComponent,
-    HomeComponent
+    HomeComponent,
+    LaunchPageComponent,
+    DoctorRegisterComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

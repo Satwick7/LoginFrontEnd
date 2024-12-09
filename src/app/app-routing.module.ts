@@ -5,6 +5,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { HomeComponent } from './components/home/home.component';
 import { authGuard } from './services/auth.guard';
+import { LaunchPageComponent } from './components/launch-page/launch-page.component';
+import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
 
 const routes: Routes = [
   {
@@ -16,9 +18,12 @@ const routes: Routes = [
     component: RegisterComponent
   },
   {
+    path: 'DoctorRegister',
+    component: DoctorRegisterComponent
+  },
+  {
     path: '',
-    redirectTo: 'login',
-    pathMatch: 'full'
+    component: LaunchPageComponent
   },
   {
     path: 'home',
