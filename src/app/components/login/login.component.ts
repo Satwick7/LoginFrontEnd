@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit{
   constructor(private loginAuth: AuthService,private router:Router, private sharedService: SharedService) { }
 
   ngOnInit(): void {
-      
+     
   }
 
   loginForm = new FormGroup({
@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit{
         this.sharedService.setUser(user); // Pass user to shared service
         console.log('Logged in user:', user);
         // this.router.navigateByUrl('home',{state:{user}});
-        this.router.navigate(['home'], { queryParams: { user: JSON.stringify(user) } });
+        this.router.navigate(['home']);
       }
     });
   }

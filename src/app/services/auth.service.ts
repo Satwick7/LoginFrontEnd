@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { BehaviorSubject } from 'rxjs';
+import { SharedService } from './shared.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private sharedService:SharedService) { }
 
   currentUser : BehaviorSubject<any> = new BehaviorSubject(null);
   baseServerUrl = "https://localhost:44360/api/";
@@ -66,5 +67,6 @@ export class AuthService {
 
   removeToken() {
     localStorage.removeItem("access_token");
+    this.sharedService.setUser(null);
   }
 }

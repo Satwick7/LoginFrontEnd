@@ -18,17 +18,34 @@ export class HeaderComponent {
   constructor(private authService:AuthService, private router:Router,private sharedService: SharedService) {}
 
   ngOnInit(): void {
-    this.user = this.sharedService.getUser(); // Retrieve user data
-    if(this.user) {
+    // this.user = this.sharedService.getUser(); // Retrieve user data
+    // if(this.user) {
+    //   this.userFound = true;
+    // }
+    // else {
+    //   this.userFound = false;
+    // }
+
+    this.userSubscription = this.sharedService.customer$.subscribe((user) => {
+      this.user = user; // Update user state
+      if(this.user) {
       this.userFound = true;
     }
     else {
       this.userFound = false;
     }
+    });
   }
 
   logOut() {
     this.authService.removeToken();
     this.router.navigateByUrl('/login');
+  }
+
+  ngOnDestroy(): void {
+    // Unsubscribe to prevent memory leaks
+    if (this.userSubscription) {
+      this.userSubscription.unsubscribe();
+    }
   }
 }
