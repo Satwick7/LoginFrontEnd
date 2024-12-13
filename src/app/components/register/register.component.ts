@@ -71,6 +71,9 @@ export class RegisterComponent implements OnInit{
          else if(res == 'Already Exist') {
           this.displayMsg = 'Account Already Exist. Try Another Email';
           this.isAccountCreated = false;
+
+          this.registerForm.reset();
+
          }
          else {
           this.displayMsg = 'Something went Wrong';

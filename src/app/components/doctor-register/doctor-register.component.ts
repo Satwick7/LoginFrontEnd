@@ -68,6 +68,8 @@ export class DoctorRegisterComponent implements OnInit{
          else if(res == 'Already Exist') {
           this.displayMsg = 'Account Already Exist. Try Another Email';
           this.isAccountCreated = false;
+
+          this.DoctorRegisterForm.reset();
          }
          else {
           this.displayMsg = 'Something went Wrong';

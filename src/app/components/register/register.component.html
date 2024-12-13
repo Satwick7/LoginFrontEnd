@@ -1,15 +1,15 @@
-<p class="text-center fs-3" [ngClass]="isAccountCreated ? 'text-success pb-1':'text-danger pb-1'">
+<p class="text-center fs-3" [ngStyle]="{'margin-top': '40px'}" [ngClass]="isAccountCreated ? 'text-success pb-1':'text-danger pb-1'">
     {{displayMsg}}
 </p>
 
 <form [formGroup]="registerForm" (ngSubmit)="registerSubmited()" class="border p-3 rounded-3 border-dark">
     <div class="row g-0">
-        <div class="col text-center p-2 mb-3 bg-light">
+        <div class="col text-center p-2 mb-1 bg-light">
             <span class="fs-3">Patient Registration</span>
         </div>
     </div>
     <div class="row">
-        <div class="col mb-2">
+        <div class="col mb-1">
             <label for="firstname" class="form-label">First Name</label>
             <input type="text" class="form-control" id="firstname" formControlName="firstname">
             <div class="form-text text-danger" *ngIf="FirstName?.errors?.['required'] && (FirstName?.touched || FirstName?.dirty)">
@@ -22,7 +22,7 @@
                 First Name Should start with alphabet
             </div>
         </div>
-        <div class="col mb-2">
+        <div class="col mb-1">
             <label for="lastname" class="form-label">Last Name</label>
             <input type="text" class="form-control" id="lastname" formControlName="lastname">
             <div class="form-text text-danger" *ngIf="LastName?.errors?.['required'] && (LastName?.touched || LastName?.dirty)">
@@ -37,7 +37,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col mb-3">
+        <div class="col mb-1">
             <label for="email" class="form-label">Email Address</label>
             <input type="email" class="form-control" id="email" formControlName="email">
             <div class="form-text text-danger" *ngIf="Email?.errors?.['required'] && (Email?.dirty || Email?.touched)">
@@ -49,7 +49,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col mb-3">
+        <div class="col mb-1">
             <label for="issue" class="form-label">Issue</label>
             <input type="text" class="form-control" id="issue" formControlName="issue">
             <div class="form-text text-danger" *ngIf="Issue?.errors?.['issue'] && (Issue?.dirty || Issue?.touched)">
@@ -58,7 +58,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col mb-3">
+        <div class="col mb-1">
             <label for="age" class="form-label">Age</label>
             <input type="text" class="form-control" id="age" formControlName="age">
             <div class="form-text text-danger" *ngIf="Age?.errors?.['required'] && (Age?.dirty || Age?.touched)">
@@ -73,7 +73,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col mb-3">
+        <div class="col mb-1">
             <label for="mobile" class="form-label">Mobile Number</label>
             <input type="text" class="form-control" id="mobile" formControlName="mobile">
             <div class="form-text text-danger" *ngIf="Mobile?.errors?.['required'] && (Mobile?.dirty || Mobile?.touched)">
@@ -89,7 +89,7 @@
                 Number is to long
             </div>
         </div>
-        <div class="col ps-3 mb-3">
+        <div class="col ps-3 mb-1">
             <div class="m-1">Gender</div>
             <div class="form-check form-check-inline">
                 <input type="radio" class="form-check-input" value="m" id="male" formControlName="gender">
@@ -102,7 +102,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col mb-3">
+        <div class="col mb-1">
             <label for="pwd" class="form-label">Password</label>
             <input type="password" class="form-control" id="pwd" formControlName="pwd">
             <div class="form-text text-danger" *ngIf="PWD?.errors?.['required'] && (PWD?.dirty || PWD?.touched)">
@@ -112,7 +112,7 @@
                 Password is Required
             </div>
         </div>
-        <div class="col mb-3">
+        <div class="col mb-1">
             <label for="rpwd" class="form-label">Repeat Password</label>
             <input type="password" class="form-control" id="rpwd" formControlName="rpwd">
             <div class="form-text text-danger" [ngStyle]="{'display':repeatPass}">
