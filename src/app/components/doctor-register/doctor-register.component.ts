@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -13,10 +14,20 @@ export class DoctorRegisterComponent implements OnInit{
   displayMsg: string = '';
   isAccountCreated: boolean = false;
 
-  constructor(private authService:AuthService) { }
+  selectedUserType: string = 'doctor';
+
+  constructor(private authService:AuthService,private router:Router) { }
 
   ngOnInit(): void {
       
+  }
+
+  onUserTypeSelect(): void {
+    if (this.selectedUserType === 'doctor') {
+      this.router.navigate(['/DoctorRegister']); // Redirect to doctor registration page
+    } else if (this.selectedUserType === 'patient') {
+      this.router.navigate(['/register']); // Redirect to patient registration page
+    }
   }
 
   DoctorRegisterForm = new FormGroup({

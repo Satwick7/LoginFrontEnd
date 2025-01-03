@@ -2,7 +2,7 @@
 <button class="btn btn-primary" (click)="logOut()">Log Out</button>
 <input id="example" #example /> -->
 
-<div id="layoutSidenav_nav">
+<!-- <div id="layoutSidenav_nav">
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
@@ -14,13 +14,15 @@
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
                     <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
-                    Pages
+                   Display 'Doctor' or 'Patient' based on typeOfUser
+                    {{ user.typeOfUser === 'Patient' ? 'Doctor' : 'Patient' }}
+                      Details
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                 </a>
                 <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                         <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth">
-                            Authentication
+                            {{ user.typeOfUser === 'Patient' ? 'Doctor' : 'Patient' }}
                             <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                         </a>
                         <div class="collapse" id="pagesCollapseAuth" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordionPages">
@@ -52,5 +54,42 @@
 <div id="layoutSidenav_content">
     <main>
         
+    </main>
+</div> -->
+
+<div id="layoutSidenav_nav">
+    <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+        <div class="sb-sidenav-menu">
+            <div class="nav">
+                <div class="sb-sidenav-menu-heading">Core</div>
+                <a class="nav-link" href="#">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Dashboard
+                </a>
+                <div class="sb-sidenav-menu-heading">Interface</div>
+                <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages">
+                    <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
+                    Details
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+                </a>
+                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+                        
+                        <a class="nav-link" *ngIf="user.typeOfUser === 'Patient'" routerLink="/doctorInfo">Doctor</a>
+
+                        <a class="nav-link" *ngIf="user.typeOfUser === 'Doctor'" routerLink="/patientInfo">Patient</a>
+
+                        <a class="nav-link" *ngIf="user.typeOfUser === 'SuperAdmin'" routerLink="/doctorInfo">Doctor</a>
+                        <a class="nav-link" *ngIf="user.typeOfUser === 'SuperAdmin'" routerLink="/patientInfo">Patient</a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        
+    </nav>
+</div>
+<div id="layoutSidenav_content">
+    <main>
+        <!-- Your main content goes here -->
     </main>
 </div>

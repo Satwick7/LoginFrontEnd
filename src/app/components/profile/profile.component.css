@@ -1,0 +1,11 @@
+.custom-width {
+    width: 500px;
+    max-width: 100%;
+}
+
+.custom-submit {
+    width: 200px;
+    margin: 0 auto; /* Centers the button if necessary */
+    display: block; /* Ensures the centering works */
+}
+

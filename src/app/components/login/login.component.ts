@@ -46,8 +46,12 @@ export class LoginComponent implements OnInit {
           // Assuming res contains both token and user
           const token = parsedRes.token;
           const user = parsedRes.user;
+          const doctors = parsedRes.doctors || [];
+          const patients = parsedRes.patients || [];
           this.loginAuth.setToken(token);
           this.sharedService.setUser(user); // Pass user to shared service
+          this.sharedService.setDoctors(doctors);
+          this.sharedService.setPatients(patients);
           console.log('Logged in user:', user);
           // this.router.navigateByUrl('home',{state:{user}});
           this.router.navigate(['home']);

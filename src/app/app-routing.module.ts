@@ -7,8 +7,15 @@ import { HomeComponent } from './components/home/home.component';
 import { authGuard } from './services/auth.guard';
 import { LaunchPageComponent } from './components/launch-page/launch-page.component';
 import { DoctorRegisterComponent } from './components/doctor-register/doctor-register.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { PatientInfoComponent } from './components/patient-info/patient-info.component';
+import { DoctorInfoComponent } from './components/doctor-info/doctor-info.component';
 
 const routes: Routes = [
+  {
+    path: '',
+    component: DoctorRegisterComponent
+  },
   {
     path: 'login',
     component: LoginComponent
@@ -22,8 +29,16 @@ const routes: Routes = [
     component: DoctorRegisterComponent
   },
   {
-    path: '',
-    component: LaunchPageComponent
+    path: 'profile',
+    component: ProfileComponent
+  },
+  {
+    path: 'patientInfo',
+    component: PatientInfoComponent
+  },
+  {
+    path: 'doctorInfo',
+    component: DoctorInfoComponent
   },
   {
     path: 'home',

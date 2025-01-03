@@ -10,12 +10,14 @@ import { SharedService } from 'src/app/services/shared.service';
 export class HomeComponent implements OnInit, AfterViewInit{
   user: any;
   userName:any;
-  @ViewChild('example') exampleInput!: ElementRef;
+
+  @ViewChild('') exampleInput!: ElementRef;
 
   constructor(private authService:AuthService, private router:Router,private sharedService: SharedService) {}
 
   ngOnInit(): void {
     this.user = this.sharedService.getUser(); // Retrieve user data
+
     if (!this.user) {
       // console.error('User data not found!');
       this.router.navigateByUrl('/login'); // Redirect to login if no user data
